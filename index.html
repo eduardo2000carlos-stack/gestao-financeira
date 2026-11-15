@@ -365,6 +365,7 @@ document.getElementById("stockForm").addEventListener("submit",async e=>{
 });
 function resetDemo(){if(activeUserId)loadRemoteBudgets(activeUserId)}
 function simulate(){let p=Number(principal.value),r=Number(rate.value)/100,n=Number(months.value);let result=p*Math.pow(1+r,n);simulation.textContent="Valor estimado: "+money(result)+" (sem aportes adicionais)."}
+setupInvestHistory();
 render();
 renderStocks();
 initAuth();
