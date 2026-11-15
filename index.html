@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101a32">
-<title>Carlos Eduardo | Gestão Financeira V15</title>
+<title>Carlos Eduardo | Gestão Financeira V16</title>
 <style>
 :root{--navy:#101a32;--navy2:#172544;--gold:#d8b66a;--bg:#f4f6fa;--ink:#202a3b;--muted:#718096;--white:#fff;--line:#e6eaf0;--green:#17845b;--red:#c34d55}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}
@@ -71,13 +71,22 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 <div class="card"><h2>Distribuição da carteira</h2><div id="stockDonut" class="stock-donut" role="img" aria-label="Distribuição da carteira por custo investido"></div><div id="stockLegend" class="stock-legend"></div><p class="stock-note">Distribuição calculada pelo custo de aquisição informado.</p></div>
 </div>
 <div class="card" style="margin-top:16px"><div class="row"><h2 style="margin:0">Posições cadastradas</h2><span class="muted" id="stockUpdatedHint">Valores manuais</span></div><div class="stock-table-wrap" id="stockTable"></div></div>
+
+<div class="card" style="margin-top:16px"><h2>V16 · Compras e dividendos</h2><p class="muted">As posições da V15 são o saldo inicial. Compras novas entram no cálculo abaixo, sem alterar ou duplicar o cadastro original.</p><div id="investStatus" class="notice" role="status">Aguardando conexão...</div></div>
+<div class="two">
+<div class="card"><h2>Registrar compra</h2><form id="purchaseForm"><label for="purchaseCode">Código da ação</label><input id="purchaseCode" required maxlength="15" placeholder="BBAS3"><label for="purchaseQty">Quantidade</label><input id="purchaseQty" type="number" min="0.000001" step="any" required><label for="purchasePrice">Preço unitário (R$)</label><input id="purchasePrice" type="number" min="0" step="any" required><label for="purchaseDate">Data da compra</label><input id="purchaseDate" type="date" required><button class="action" type="submit">Registrar compra</button></form></div>
+<div class="card"><h2>Registrar provento</h2><form id="dividendForm"><label for="dividendCode">Código da ação</label><input id="dividendCode" required maxlength="15" placeholder="BBAS3"><label for="dividendType">Tipo</label><select id="dividendType"><option>Dividendo</option><option>JCP</option><option>Outro provento</option></select><label for="dividendValue">Valor total recebido (R$)</label><input id="dividendValue" type="number" min="0" step="0.01" required><label for="dividendDate">Data do pagamento</label><input id="dividendDate" type="date" required><button class="action" type="submit">Registrar provento</button></form></div>
+</div>
+<div class="grid" style="margin-top:16px"><div class="card"><div class="metric">Compras adicionais</div><div class="value" id="purchaseTotal">R$ 0,00</div></div><div class="card"><div class="metric">Dividendos recebidos</div><div class="value positive" id="dividendTotal">R$ 0,00</div></div><div class="card"><div class="metric">Total aplicado (base + compras)</div><div class="value gold" id="investTotal">R$ 0,00</div></div><div class="card"><div class="metric">Operações registradas</div><div class="value" id="operationCount">0</div></div></div>
+<div class="card" style="margin-top:16px"><h2>Posições consolidadas e preço médio</h2><div class="stock-table-wrap" id="consolidatedStocks"></div><p class="muted">Cálculo: (custo da posição inicial + custo das novas compras) ÷ (quantidade inicial + quantidade comprada). Não considera vendas, taxas, desdobramentos ou bonificações. Não altere manualmente a posição inicial para refletir compras já registradas aqui.</p></div>
+<div class="two"><div class="card"><h2>Histórico de compras</h2><div class="stock-table-wrap" id="purchaseHistory"></div></div><div class="card"><h2>Histórico de proventos</h2><div class="stock-table-wrap" id="dividendHistory"></div></div></div>
 <div class="notice">O resultado é uma estimativa sem taxas, impostos, proventos ou operações anteriores. Uma posição sem preço atual informado não entra no cálculo de valorização. Conteúdo educativo, não é recomendação de investimento.</div>
 </section>
 <section id="relatorios" class="section"><h1>Relatórios</h1><p class="sub">Resumo das receitas e despesas sincronizadas com sua conta.</p><div class="card" id="report"></div><div class="report-grid"><div class="card"><h2>Distribuição de despesas</h2><div id="expenseRing" class="chart-ring" role="img" aria-label="Gráfico de distribuição de despesas"></div><div id="ringLegend" class="ring-label"></div></div><div class="card"><h2>Gastos por categoria</h2><div id="reportCategories"></div></div></div></section>
 <section id="educacao" class="section"><h1>Educação financeira</h1><p class="sub">Conceitos essenciais para tomar decisões mais conscientes.</p><div class="card"><div class="lesson"><strong>1. Organize seu orçamento</strong><p class="muted">Anote receitas e despesas para entender para onde seu dinheiro está indo.</p></div><div class="lesson"><strong>2. Construa uma reserva</strong><p class="muted">Uma reserva pode ajudar a lidar com imprevistos. Defina um objetivo compatível com sua realidade.</p></div><div class="lesson"><strong>3. Conheça antes de investir</strong><p class="muted">Entenda riscos, custos, liquidez e prazo. Não existe rentabilidade garantida em investimentos de risco.</p></div><div class="lesson"><strong>4. Simule juros compostos</strong><p class="muted">O resultado depende da taxa, do prazo e dos aportes. Simulações não são promessa de retorno.</p><label>Valor inicial (R$)</label><input id="principal" type="number" value="1000" min="0"><label>Taxa mensal (%)</label><input id="rate" type="number" value="0.8" step="0.1"><label>Prazo (meses)</label><input id="months" type="number" value="12" min="1"><button class="action" onclick="simulate()">Simular</button><p id="simulation" class="gold"></p></div></div></section>
 <section id="config" class="section"><h1>Configurações</h1><p class="sub">Preferências e dados deste protótipo. Os limites do planejamento também são sincronizados com sua conta.</p><div class="card"><p>Receitas, despesas, metas, orçamentos e posições de ações são sincronizados com sua conta no Supabase. Os orçamentos antigos armazenados no navegador não são migrados automaticamente.</p><button class="danger" onclick="resetDemo()">Recarregar orçamentos da conta</button><div class="notice">Esta é uma versão demonstrativa. Não informe senhas, dados bancários ou informações financeiras sensíveis. O login é feito pelo Supabase; os registros financeiros e a carteira de ações são sincronizados entre dispositivos.</div></div></section>
 <div class="notice">Receitas, despesas, metas, orçamentos e ações vêm do Supabase. Esta ferramenta é educativa e organizacional; não constitui recomendação individual de investimento.</div>
-</main><footer>© 2026 Carlos Eduardo – Gestão Financeira · Versão 15.0 · Carteira de ações sincronizada (beta)</footer>
+</main><footer>© 2026 Carlos Eduardo – Gestão Financeira · Versão 16.0 · Carteira de ações sincronizada (beta)</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 // Preencha apenas a URL do projeto e a chave PUBLICÁVEL (sb_publishable_...).
@@ -143,14 +152,50 @@ async function loadRemoteStocks(userId){
   if(error)throw error;
   if(seq!==stockLoadSeq||activeUserId!==userId)return;
   stockRows=(rows||[]).map(x=>({id:x.id,code:String(x.codigo||"").toUpperCase(),company:x.empresa||"",qty:Number(x.quantidade),avg:Number(x.preco_medio),price:x.preco_atual===null?null:Number(x.preco_atual)}));
-  stockReady=true;stockNotice("Carteira sincronizada com sua conta. Posições: "+stockRows.length);renderStocks();
+  stockReady=true;renderInvestHistory();stockNotice("Carteira sincronizada com sua conta. Posições: "+stockRows.length);renderStocks();
  }catch(err){if(seq!==stockLoadSeq||activeUserId!==userId)return;stockReady=false;stockRows=[];renderStocks();stockNotice("Erro ao carregar ações: "+(err.message||"Verifique as políticas RLS."),true)}
+}
+let purchaseRows=[],dividendRows=[],investLoadSeq=0,investReady=false;
+function investNotice(msg,failed=false){const el=document.getElementById("investStatus");el.textContent=msg;el.style.color=failed?"#a62d38":"#755a20"}
+async function loadInvestHistory(userId){
+ const seq=++investLoadSeq;investReady=false;investNotice("Carregando compras e proventos...");
+ try{
+  const [p,d]=await Promise.all([
+   authClient.from("compras_acoes").select("id,codigo,quantidade,preco_unitario,data_compra").eq("usuario_id",userId).order("data_compra",{ascending:false}),
+   authClient.from("dividendos").select("id,codigo,tipo,valor,data_pagamento").eq("usuario_id",userId).order("data_pagamento",{ascending:false})
+  ]);
+  if(p.error)throw p.error;if(d.error)throw d.error;
+  if(seq!==investLoadSeq||activeUserId!==userId)return;
+  purchaseRows=(p.data||[]).map(x=>({id:x.id,code:String(x.codigo).toUpperCase(),qty:Number(x.quantidade),price:Number(x.preco_unitario),date:x.data_compra}));
+  dividendRows=(d.data||[]).map(x=>({id:x.id,code:String(x.codigo).toUpperCase(),type:x.tipo,value:Number(x.valor),date:x.data_pagamento}));
+  investReady=true;investNotice("Históricos sincronizados: "+purchaseRows.length+" compras e "+dividendRows.length+" proventos.");renderInvestHistory();
+ }catch(err){if(seq!==investLoadSeq||activeUserId!==userId)return;investNotice("Erro ao carregar histórico: "+(err.message||"Verifique as permissões."),true);renderInvestHistory()}
+}
+function renderInvestHistory(){
+ const buys=purchaseRows.reduce((n,x)=>n+x.qty*x.price,0),base=stockRows.reduce((n,x)=>n+x.qty*x.avg,0),divs=dividendRows.reduce((n,x)=>n+x.value,0);
+ document.getElementById("purchaseTotal").textContent=money(buys);document.getElementById("dividendTotal").textContent=money(divs);document.getElementById("investTotal").textContent=money(base+buys);document.getElementById("operationCount").textContent=String(purchaseRows.length+dividendRows.length);
+ const positions=new Map();
+ for(const x of stockRows)positions.set(x.code,{code:x.code,qty:x.qty,cost:x.qty*x.avg,opening:true});
+ for(const x of purchaseRows){const v=positions.get(x.code)||{code:x.code,qty:0,cost:0,opening:false};v.qty+=x.qty;v.cost+=x.qty*x.price;positions.set(x.code,v)}
+ const consolidated=[...positions.values()].sort((a,b)=>a.code.localeCompare(b.code));
+ document.getElementById("consolidatedStocks").innerHTML=consolidated.length?'<table><thead><tr><th>Ação</th><th>Quantidade</th><th>Custo total</th><th>Preço médio</th></tr></thead><tbody>'+consolidated.map(x=>`<tr><td><strong>${escapeHtml(x.code)}</strong></td><td>${x.qty.toLocaleString("pt-BR",{maximumFractionDigits:6})}</td><td>${money(x.cost)}</td><td>${money(x.qty?x.cost/x.qty:0)}</td></tr>`).join("")+'</tbody></table>':'<p class="muted">Cadastre uma posição inicial ou registre uma compra.</p>';
+ document.getElementById("purchaseHistory").innerHTML=purchaseRows.length?'<table><thead><tr><th>Data / ação</th><th>Quantidade</th><th>Valor</th><th></th></tr></thead><tbody>'+purchaseRows.map(x=>`<tr><td>${escapeHtml(x.date)}<div class="muted">${escapeHtml(x.code)}</div></td><td>${x.qty.toLocaleString("pt-BR")}</td><td>${money(x.qty*x.price)}</td><td><button type="button" class="danger" data-buy-delete="${x.id}">Excluir</button></td></tr>`).join("")+'</tbody></table>':'<p class="muted">Nenhuma compra adicional registrada.</p>';
+ document.getElementById("dividendHistory").innerHTML=dividendRows.length?'<table><thead><tr><th>Data / ação</th><th>Tipo</th><th>Recebido</th><th></th></tr></thead><tbody>'+dividendRows.map(x=>`<tr><td>${escapeHtml(x.date)}<div class="muted">${escapeHtml(x.code)}</div></td><td>${escapeHtml(x.type)}</td><td>${money(x.value)}</td><td><button type="button" class="danger" data-div-delete="${x.id}">Excluir</button></td></tr>`).join("")+'</tbody></table>':'<p class="muted">Nenhum provento registrado.</p>';
+}
+async function deleteInvestRow(table,id){if(!activeUserId||!investReady)return;if(!confirm("Excluir este lançamento?"))return;const userId=activeUserId;const {data:deleted,error}=await authClient.from(table).delete().eq("id",id).eq("usuario_id",userId).select("id");if(activeUserId!==userId)return;if(error||!deleted?.length){investNotice("Não foi possível excluir: "+(error?.message||"Registro não encontrado"),true);return}await loadInvestHistory(userId)}
+function setupInvestHistory(){
+ const today=new Date().toLocaleDateString("en-CA");document.getElementById("purchaseDate").value=today;document.getElementById("dividendDate").value=today;
+ document.getElementById("purchaseForm").addEventListener("submit",async e=>{e.preventDefault();if(!activeUserId||!investReady){investNotice("Aguarde a sincronização.",true);return}const form=e.currentTarget,button=form.querySelector("button"),userId=activeUserId,code=document.getElementById("purchaseCode").value.trim().toUpperCase(),qty=Number(document.getElementById("purchaseQty").value),price=Number(document.getElementById("purchasePrice").value),date=document.getElementById("purchaseDate").value;if(!/^[A-Z0-9]{4,15}$/.test(code)||!Number.isFinite(qty)||qty<=0||!Number.isFinite(price)||price<0||!date){investNotice("Confira os dados da compra.",true);return}button.disabled=true;try{const {data,error}=await authClient.from("compras_acoes").insert({usuario_id:userId,codigo:code,quantidade:qty,preco_unitario:price,data_compra:date}).select("id");if(error)throw error;if(!data?.length)throw new Error("Compra não confirmada.");if(activeUserId!==userId)return;form.reset();document.getElementById("purchaseDate").value=today;await loadInvestHistory(userId)}catch(err){if(activeUserId===userId)investNotice("Erro ao salvar compra: "+err.message,true)}finally{button.disabled=false}});
+ document.getElementById("dividendForm").addEventListener("submit",async e=>{e.preventDefault();if(!activeUserId||!investReady){investNotice("Aguarde a sincronização.",true);return}const form=e.currentTarget,button=form.querySelector("button"),userId=activeUserId,code=document.getElementById("dividendCode").value.trim().toUpperCase(),type=document.getElementById("dividendType").value,value=Number(document.getElementById("dividendValue").value),date=document.getElementById("dividendDate").value;if(!/^[A-Z0-9]{4,15}$/.test(code)||!Number.isFinite(value)||value<0||!date){investNotice("Confira os dados do provento.",true);return}button.disabled=true;try{const {data,error}=await authClient.from("dividendos").insert({usuario_id:userId,codigo:code,tipo,valor:value,data_pagamento:date}).select("id");if(error)throw error;if(!data?.length)throw new Error("Provento não confirmado.");if(activeUserId!==userId)return;form.reset();document.getElementById("dividendDate").value=today;await loadInvestHistory(userId)}catch(err){if(activeUserId===userId)investNotice("Erro ao salvar provento: "+err.message,true)}finally{button.disabled=false}});
+ document.getElementById("purchaseHistory").addEventListener("click",e=>{const b=e.target.closest("[data-buy-delete]");if(b)deleteInvestRow("compras_acoes",b.dataset.buyDelete)});
+ document.getElementById("dividendHistory").addEventListener("click",e=>{const b=e.target.closest("[data-div-delete]");if(b)deleteInvestRow("dividendos",b.dataset.divDelete)});
 }
 const stockColors=["#d8b66a","#172544","#17845b","#c34d55","#7084b5","#a27bcb","#92a4b5","#d39b6a"];
 function stockCost(x){return x.qty*x.avg}
 function stockValue(x){return x.price===null?null:x.qty*x.price}
 function stockSigned(n){return (n>0?"+":"")+money(n)}
 function renderStocks(){
+ renderInvestHistory();
  const total=stockRows.reduce((s,x)=>s+stockCost(x),0),priced=stockRows.filter(x=>x.price!==null),pricedCost=priced.reduce((s,x)=>s+stockCost(x),0),pricedValue=priced.reduce((s,x)=>s+stockValue(x),0),delta=pricedValue-pricedCost;
  document.getElementById("stockInvested").textContent=money(total);
  document.getElementById("stockCurrent").textContent=stockRows.length&&priced.length===stockRows.length?money(pricedValue):priced.length?money(pricedValue)+"*":"—";
@@ -177,7 +222,7 @@ function showSession(session){
  document.getElementById("appShell").classList.toggle("hidden",!loggedIn);
  document.getElementById("sessionBox").classList.toggle("hidden",!loggedIn);
  document.getElementById("sessionEmail").textContent=loggedIn?session.user.email||"Conta conectada":"";
- if(changed){activeUserId=userId;incomeLoadSeq++;expenseLoadSeq++;goalLoadSeq++;budgetLoadSeq++;stockLoadSeq++;incomeReady=false;expenseReady=false;goalReady=false;budgetReady=false;stockReady=false;stockRows=[];clearStockForm();data.income=[];data.expense=[];data.goals=[];budgets={};render();if(loggedIn){loadRemoteIncome(userId);loadRemoteExpenses(userId);loadRemoteGoals(userId);loadRemoteBudgets(userId);loadRemoteStocks(userId)}else{incomeNotice("Entre para carregar suas receitas.");expenseNotice("Entre para carregar suas despesas.");goalNotice("Entre para carregar suas metas.");budgetNotice("Entre para carregar seus orçamentos.");stockNotice("Entre para carregar sua carteira de ações.")}}
+ if(changed){activeUserId=userId;incomeLoadSeq++;expenseLoadSeq++;goalLoadSeq++;budgetLoadSeq++;stockLoadSeq++;incomeReady=false;expenseReady=false;goalReady=false;budgetReady=false;stockReady=false;stockRows=[];purchaseRows=[];dividendRows=[];investReady=false;investLoadSeq++;renderInvestHistory();clearStockForm();data.income=[];data.expense=[];data.goals=[];budgets={};render();if(loggedIn){loadRemoteIncome(userId);loadRemoteExpenses(userId);loadRemoteGoals(userId);loadRemoteBudgets(userId);loadRemoteStocks(userId);loadInvestHistory(userId)}else{incomeNotice("Entre para carregar suas receitas.");expenseNotice("Entre para carregar suas despesas.");goalNotice("Entre para carregar suas metas.");budgetNotice("Entre para carregar seus orçamentos.");stockNotice("Entre para carregar sua carteira de ações.");investNotice("Entre para carregar o histórico de investimentos.")}}
  else if(loggedIn)render();
 }
 function friendlyAuthError(error){const message=error?.message||"Não foi possível concluir. Tente novamente.";if(/invalid login credentials/i.test(message))return "E-mail ou senha incorretos, ou conta ainda não confirmada.";if(/email not confirmed/i.test(message))return "Confirme seu e-mail antes de entrar.";if(/already registered/i.test(message))return "Este e-mail já possui uma conta. Tente entrar.";return message}
