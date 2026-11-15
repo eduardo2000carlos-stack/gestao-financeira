@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101a32">
-<title>Carlos Eduardo | Gestão Financeira V16</title>
+<title>Carlos Eduardo | Gestão Financeira V16.1</title>
 <style>
 :root{--navy:#101a32;--navy2:#172544;--gold:#d8b66a;--bg:#f4f6fa;--ink:#202a3b;--muted:#718096;--white:#fff;--line:#e6eaf0;--green:#17845b;--red:#c34d55}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}
@@ -53,7 +53,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 <h1>Minha carteira de ações</h1><p class="sub">Registre suas posições, acompanhe o custo e compare com preços de referência informados por você.</p>
 <div id="stockStatus" class="notice" role="status" aria-live="polite">Aguardando conexão...</div>
 <div class="grid stock-metrics" style="margin-top:16px">
-<div class="card"><div class="metric">Total investido</div><div class="value" id="stockInvested">R$ 0,00</div></div>
+<div class="card"><div class="metric">Total investido (base + compras)</div><div class="value" id="stockInvested">R$ 0,00</div></div>
 <div class="card"><div class="metric">Valor estimado atual</div><div class="value gold" id="stockCurrent">—</div></div>
 <div class="card"><div class="metric">Resultado estimado</div><div class="value" id="stockProfit">—</div></div>
 <div class="card"><div class="metric">Ativos cadastrados</div><div class="value" id="stockCount">0</div></div>
@@ -86,7 +86,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;p
 <section id="educacao" class="section"><h1>Educação financeira</h1><p class="sub">Conceitos essenciais para tomar decisões mais conscientes.</p><div class="card"><div class="lesson"><strong>1. Organize seu orçamento</strong><p class="muted">Anote receitas e despesas para entender para onde seu dinheiro está indo.</p></div><div class="lesson"><strong>2. Construa uma reserva</strong><p class="muted">Uma reserva pode ajudar a lidar com imprevistos. Defina um objetivo compatível com sua realidade.</p></div><div class="lesson"><strong>3. Conheça antes de investir</strong><p class="muted">Entenda riscos, custos, liquidez e prazo. Não existe rentabilidade garantida em investimentos de risco.</p></div><div class="lesson"><strong>4. Simule juros compostos</strong><p class="muted">O resultado depende da taxa, do prazo e dos aportes. Simulações não são promessa de retorno.</p><label>Valor inicial (R$)</label><input id="principal" type="number" value="1000" min="0"><label>Taxa mensal (%)</label><input id="rate" type="number" value="0.8" step="0.1"><label>Prazo (meses)</label><input id="months" type="number" value="12" min="1"><button class="action" onclick="simulate()">Simular</button><p id="simulation" class="gold"></p></div></div></section>
 <section id="config" class="section"><h1>Configurações</h1><p class="sub">Preferências e dados deste protótipo. Os limites do planejamento também são sincronizados com sua conta.</p><div class="card"><p>Receitas, despesas, metas, orçamentos e posições de ações são sincronizados com sua conta no Supabase. Os orçamentos antigos armazenados no navegador não são migrados automaticamente.</p><button class="danger" onclick="resetDemo()">Recarregar orçamentos da conta</button><div class="notice">Esta é uma versão demonstrativa. Não informe senhas, dados bancários ou informações financeiras sensíveis. O login é feito pelo Supabase; os registros financeiros e a carteira de ações são sincronizados entre dispositivos.</div></div></section>
 <div class="notice">Receitas, despesas, metas, orçamentos e ações vêm do Supabase. Esta ferramenta é educativa e organizacional; não constitui recomendação individual de investimento.</div>
-</main><footer>© 2026 Carlos Eduardo – Gestão Financeira · Versão 16.0 · Carteira de ações sincronizada (beta)</footer>
+</main><footer>© 2026 Carlos Eduardo – Gestão Financeira · Versão 16.1 · Carteira de ações sincronizada (beta)</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 // Preencha apenas a URL do projeto e a chave PUBLICÁVEL (sb_publishable_...).
@@ -173,7 +173,7 @@ async function loadInvestHistory(userId){
 }
 function renderInvestHistory(){
  const buys=purchaseRows.reduce((n,x)=>n+x.qty*x.price,0),base=stockRows.reduce((n,x)=>n+x.qty*x.avg,0),divs=dividendRows.reduce((n,x)=>n+x.value,0);
- document.getElementById("purchaseTotal").textContent=money(buys);document.getElementById("dividendTotal").textContent=money(divs);document.getElementById("investTotal").textContent=money(base+buys);document.getElementById("operationCount").textContent=String(purchaseRows.length+dividendRows.length);
+ document.getElementById("purchaseTotal").textContent=money(buys);document.getElementById("dividendTotal").textContent=money(divs);document.getElementById("investTotal").textContent=money(base+buys);document.getElementById("stockInvested").textContent=money(base+buys);document.getElementById("operationCount").textContent=String(purchaseRows.length+dividendRows.length);
  const positions=new Map();
  for(const x of stockRows)positions.set(x.code,{code:x.code,qty:x.qty,cost:x.qty*x.avg,opening:true});
  for(const x of purchaseRows){const v=positions.get(x.code)||{code:x.code,qty:0,cost:0,opening:false};v.qty+=x.qty;v.cost+=x.qty*x.price;positions.set(x.code,v)}
@@ -197,7 +197,7 @@ function stockSigned(n){return (n>0?"+":"")+money(n)}
 function renderStocks(){
  renderInvestHistory();
  const total=stockRows.reduce((s,x)=>s+stockCost(x),0),priced=stockRows.filter(x=>x.price!==null),pricedCost=priced.reduce((s,x)=>s+stockCost(x),0),pricedValue=priced.reduce((s,x)=>s+stockValue(x),0),delta=pricedValue-pricedCost;
- document.getElementById("stockInvested").textContent=money(total);
+ document.getElementById("stockInvested").textContent=money(total+purchaseRows.reduce((s,x)=>s+x.qty*x.price,0));
  document.getElementById("stockCurrent").textContent=stockRows.length&&priced.length===stockRows.length?money(pricedValue):priced.length?money(pricedValue)+"*":"—";
  const profit=document.getElementById("stockProfit");profit.textContent=priced.length?stockSigned(delta)+" ("+(pricedCost>0?(delta/pricedCost*100).toFixed(2).replace(".",",")+"%":"sem base")+")":"—";profit.className="value "+(delta>0?"positive":delta<0?"negative":"");
  document.getElementById("stockCount").textContent=String(stockRows.length);
