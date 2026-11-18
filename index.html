@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101a32">
-<title>Carlos Eduardo | Gestão Financeira V25.3 Dark Edition — Rendimentos</title>
+<title>Carlos Eduardo | Gestão Financeira V25.4 Dark Edition — Rendimentos</title>
 <style>
 :root{--navy:#101a32;--navy2:#172544;--gold:#d8b66a;--bg:#f4f6fa;--ink:#202a3b;--muted:#718096;--white:#fff;--line:#e6eaf0;--green:#17845b;--red:#c34d55}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}
@@ -82,7 +82,7 @@ footer{margin-left:258px;color:#9cafc8}
 @media(max-width:760px){body>header{background:#091a30}.nav button:not(.active){background:#142b48;color:#e2ebfa;border-color:#3c5372}footer{margin-left:0}.wrap{padding:16px 12px 36px}}
 @media print{html{color-scheme:light}body{background:white;color:#202a3b}}
 
-/* V25.3 — acabamento premium e consistência do tema */
+/* V25.4 — acabamento premium e consistência do tema */
 :root{--bg:#071529;--navy:#08172e;--navy2:#142c4c;--ink:#eef4ff;--muted:#adbed5;--line:#344b69;--gold:#e8b950}
 html,body{min-height:100%;background:#071529!important;color:#edf4ff!important}
 body{background:radial-gradient(ellipse at 78% 0%,#183b61 0%,#0a1d35 42%,#061326 100%) fixed!important}
@@ -120,7 +120,7 @@ footer{color:#aebfd6!important}
 @media(max-width:760px){body>header{background:#091c35!important}.nav button:not(.active){background:#152e4c!important;border:1px solid #3e5a79!important}.wrap{padding:16px 12px 36px!important}}
 @media print{html,body{background:#fff!important;color:#202a3b!important}}
 
-/* V25.3 — gráficos premium baseados exclusivamente em dados registrados */
+/* V25.4 — gráficos premium baseados exclusivamente em dados registrados */
 .v25-premium-chart{width:100%;height:auto;display:block;min-height:220px;overflow:visible}
 .v25-premium-chart .gridline{stroke:#35516f;stroke-width:1;stroke-dasharray:4 6}
 .v25-premium-chart .axislabel{fill:#bed0e5;font-size:12px;font-family:Inter,system-ui,sans-serif}
@@ -136,13 +136,22 @@ footer{color:#aebfd6!important}
 .asset-ring:after,.stock-donut:after,.chart-ring:after{box-shadow:inset 0 0 0 1px #45617f}
 @media(max-width:760px){.v25-premium-chart{min-height:160px}.v25-chart-frame{padding:5px}}
 
-/* V25.3 — painéis de distribuição e evolução real */
+/* V25.4 — painéis de distribuição e evolução real */
 .v253-donut-wrap{display:grid;grid-template-columns:minmax(140px,210px) minmax(150px,1fr);align-items:center;gap:22px;min-height:260px}
 .v253-donut{aspect-ratio:1;width:100%;max-width:210px;border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 28px #0003}
 .v253-donut-core{width:65%;aspect-ratio:1;background:#102846;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:5px;padding:8px}
 .v253-donut-core span{font-size:11px;color:#b8c8dd}.v253-donut-core strong{font-size:19px;color:#f4f7fc}
 .v253-donut-legend{display:grid;gap:14px}.v253-donut-legend>div{display:grid;grid-template-columns:1fr auto;gap:3px 10px;font-size:12px}.v253-donut-legend span{display:flex;align-items:center;gap:7px}.v253-donut-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}.v253-donut-legend small{grid-column:1/-1;color:#b8c8dd}
 @media(max-width:560px){.v253-donut-wrap{grid-template-columns:1fr;justify-items:center}.v253-donut-legend{width:100%}}
+
+/* V25.4 — refinamento visual e acessibilidade */
+.v25-kpis .card{position:relative;overflow:hidden;border-top:2px solid #d6a440!important}
+.v25-kpis .metric{display:flex;align-items:center;gap:9px}
+.v254-kpi-icon{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:9px;background:#3b3427;color:#f3c35b;font-size:20px;font-weight:800;flex:none}
+.v25-premium-chart .premium-bar{cursor:help}
+.v25-premium-chart circle[data-v254-point]{cursor:help;transition:r .15s ease}
+.v25-premium-chart circle[data-v254-point]:hover{r:7}
+.v254-chart-caption{color:#afc1d8;font-size:12px;margin-top:9px}
 </style>
 </head>
 <body>
@@ -154,7 +163,7 @@ footer{color:#aebfd6!important}
 <button class="active" data-tab="dashboard">Visão geral</button><button data-tab="receitas">Receitas</button><button data-tab="despesas">Despesas</button><button data-tab="metas">Metas</button><button data-tab="orcamento">Planejamento</button><button data-tab="acoes">Ações</button><button data-tab="carteira-completa">Carteira completa</button><button data-tab="fiis">Fundos Imobiliários (FIIs)</button><button data-tab="tesouro">Tesouro Direto</button><button data-tab="rendimentos">💰 Rendimentos</button><button data-tab="relatorios">Relatórios</button><button data-tab="educacao">Educação financeira</button><button data-tab="config">Configurações</button>
 </nav>
 <section id="dashboard" class="section active">
-<div class="dash-hero"><h2>Seu painel financeiro · V25</h2><p>Receitas, despesas, metas e investimentos em um só lugar. Acompanhe seus dados com clareza.</p><span class="dash-tag" id="dashSync">Aguardando sincronização...</span></div>
+<div class="dash-hero"><h2>Seu painel financeiro · V25.4</h2><p>Receitas, despesas, metas e investimentos em um só lugar. Acompanhe seus dados com clareza.</p><span class="dash-tag" id="dashSync">Aguardando sincronização...</span></div>
 <h1>Visão geral</h1><p class="sub">Escolha o mês para acompanhar seu fluxo de caixa e seus objetivos.</p><label for="period">Período do painel</label><input id="period" type="month" style="max-width:210px">
 <div class="grid">
 <div class="card"><div class="metric">Receitas do período</div><div class="value positive" id="totalIn">R$ 0,00</div></div>
@@ -233,12 +242,12 @@ footer{color:#aebfd6!important}
 <section id="tesouro" class="section"><div class="v24-top"><div><h1>Tesouro Direto <span class="v24-tag">V24</span></h1><p>Registre seus títulos e acompanhe valores aplicados e preços informados.</p></div></div><div class="notice" id="tesouroStatus" role="status">Aguardando login...</div><div class="card"><h2>Adicionar ou editar título</h2><form id="tesouroForm" class="asset-form"><div><label for="tdType">Tipo de título</label><select id="tdType"><option>Tesouro Selic</option><option>Tesouro IPCA+</option><option>Tesouro Prefixado</option><option>Tesouro IPCA+ com Juros Semestrais</option><option>Tesouro Prefixado com Juros Semestrais</option></select></div><div><label for="tdName">Identificação do título</label><input id="tdName" required maxlength="100" placeholder="Ex.: Tesouro IPCA+ 2037"></div><div><label for="tdMaturity">Vencimento</label><input id="tdMaturity" type="date" required></div><div><label for="tdRate">Taxa contratada (texto)</label><input id="tdRate" maxlength="70" placeholder="Ex.: IPCA + 7,74% a.a."></div><div><label for="tdCost">Valor total aplicado (R$)</label><input id="tdCost" type="number" min="0.01" step="0.01" required></div><div><label for="tdValue">Valor atual informado (R$)</label><input id="tdValue" type="number" min="0" step="0.01" placeholder="Opcional"></div><div class="wide"><button class="action" type="submit" id="tdSave">Salvar título</button> <button class="danger hidden" type="button" id="tdCancel">Cancelar edição</button></div></form><p class="asset-note">Valor atual é informado manualmente, preferencialmente com base no extrato da corretora ou do Tesouro Direto. A taxa contratada não é usada para estimar automaticamente o preço de mercado.</p></div><div class="card" style="margin-top:16px"><h2>Meus títulos</h2><div class="asset-table" id="tdTable"></div></div></section>
 
 <section id="rendimentos" class="section">
- <div class="v24-top"><div><h1>Rendimentos e proventos <span class="v24-tag">V25.3</span></h1><p>Dividendos de ações, rendimentos de FIIs e juros semestrais do Tesouro, sem duplicar lançamentos.</p></div></div>
+ <div class="v24-top"><div><h1>Rendimentos e proventos <span class="v24-tag">V25.4</span></h1><p>Dividendos de ações, rendimentos de FIIs e juros semestrais do Tesouro, sem duplicar lançamentos.</p></div></div>
  <div class="notice" id="v25Status" role="status" aria-live="polite">Aguardando sincronização...</div>
  <div class="v25-filters"><div><label for="v25Year">Ano do gráfico</label><select id="v25Year"></select></div><div><label for="v25Filter">Tipo de rendimento</label><select id="v25Filter"><option value="todos">Todos</option><option value="acoes">Ações</option><option value="fiis">FIIs</option><option value="tesouro">Tesouro Direto</option></select></div></div>
- <div class="v25-kpis"><div class="card"><div class="metric">Total recebido (acumulado)</div><div class="value positive" id="v25Total">—</div></div><div class="card"><div class="metric">Recebido no ano</div><div class="value" id="v25YearTotal">—</div></div><div class="card"><div class="metric">Recebido neste mês</div><div class="value" id="v25MonthTotal">—</div></div><div class="card"><div class="metric">Registros de recebimento</div><div class="value" id="v25Count">—</div></div></div>
- <div class="v25-grid"><div class="card"><h2>Rendimentos por mês</h2><div class="v25-chart-frame"><div id="v25Chart" role="img" aria-label="Rendimentos mensais por categoria"></div></div><div class="v25-legend"><span><b style="background:#2563eb"></b>Ações</span><span><b style="background:#9b59b6"></b>FIIs</span><span><b style="background:#d49a13"></b>Tesouro</span></div><p class="asset-note">Gráfico baseado somente em recebimentos cadastrados, não em previsões.</p></div>
- <div class="card"><h2>Composição dos rendimentos</h2><div id="v253Donut" class="v253-donut-wrap" role="img" aria-label="Distribuição de rendimentos recebidos por categoria"></div><p class="asset-note">Distribuição dos pagamentos recebidos no ano e filtro selecionados.</p></div></div><div class="v25-grid"><div class="card"><h2>Evolução acumulada de rendimentos</h2><div class="v25-chart-frame" id="v253Cumulative" role="img" aria-label="Evolução acumulada dos rendimentos recebidos no ano"></div><p class="asset-note">Acumulado mês a mês apenas dos valores efetivamente recebidos.</p></div><div class="card"><h2>Registrar juros recebidos do Tesouro</h2><form id="v25CouponForm"><label for="v25Title">Título</label><select id="v25Title" required></select><label for="v25Date">Data do recebimento</label><input id="v25Date" type="date" required><label for="v25Value">Valor líquido recebido (R$)</label><input id="v25Value" type="number" min="0.01" step="0.01" required placeholder="0,00"><button class="action" type="submit">Registrar juros recebidos</button></form><p class="asset-note">Registre apenas pagamentos efetivamente recebidos. Não registre aqui valorização do título nem estime cupons futuros. Se registrar o recebimento também em Receitas, o fluxo de caixa poderá refletir a mesma entrada, mas o painel de proventos não a somará duas vezes.</p></div></div>
+ <div class="v25-kpis"><div class="card"><div class="metric"><span class="v254-kpi-icon" aria-hidden="true">◉</span>Total recebido (acumulado)</div><div class="value positive" id="v25Total">—</div></div><div class="card"><div class="metric"><span class="v254-kpi-icon" aria-hidden="true">▥</span>Recebido no ano</div><div class="value" id="v25YearTotal">—</div></div><div class="card"><div class="metric"><span class="v254-kpi-icon" aria-hidden="true">▣</span>Recebido neste mês</div><div class="value" id="v25MonthTotal">—</div></div><div class="card"><div class="metric"><span class="v254-kpi-icon" aria-hidden="true">≡</span>Registros de recebimento</div><div class="value" id="v25Count">—</div></div></div>
+ <div class="v25-grid"><div class="card"><h2>Rendimentos por mês</h2><div class="v25-chart-frame"><div id="v25Chart" role="img" aria-label="Rendimentos mensais por categoria"></div></div><div class="v25-legend"><span><b style="background:#2563eb"></b>Ações</span><span><b style="background:#9b59b6"></b>FIIs</span><span><b style="background:#d49a13"></b>Tesouro</span></div><p class="asset-note">Gráfico baseado somente em recebimentos cadastrados, não em previsões. Passe o mouse ou toque nas barras para consultar os valores.</p></div>
+ <div class="card"><h2>Composição dos rendimentos</h2><div id="v253Donut" class="v253-donut-wrap" role="img" aria-label="Distribuição de rendimentos recebidos por categoria"></div><p class="asset-note">Distribuição dos pagamentos recebidos no ano e filtro selecionados. Os percentuais são calculados a partir dos registros reais.</p></div></div><div class="v25-grid"><div class="card"><h2>Evolução acumulada de rendimentos</h2><div class="v25-chart-frame" id="v253Cumulative" role="img" aria-label="Evolução acumulada dos rendimentos recebidos no ano"></div><p class="asset-note">Acumulado de recebimentos reais até o mês atual. Meses futuros não são projetados. Passe o mouse ou toque nos pontos para ver os valores.</p></div><div class="card"><h2>Registrar juros recebidos do Tesouro</h2><form id="v25CouponForm"><label for="v25Title">Título</label><select id="v25Title" required></select><label for="v25Date">Data do recebimento</label><input id="v25Date" type="date" required><label for="v25Value">Valor líquido recebido (R$)</label><input id="v25Value" type="number" min="0.01" step="0.01" required placeholder="0,00"><button class="action" type="submit">Registrar juros recebidos</button></form><p class="asset-note">Registre apenas pagamentos efetivamente recebidos. Não registre aqui valorização do título nem estime cupons futuros. Se registrar o recebimento também em Receitas, o fluxo de caixa poderá refletir a mesma entrada, mas o painel de proventos não a somará duas vezes.</p></div></div>
  <div class="card"><div class="row"><h2 style="margin:0">Histórico de recebimentos</h2><span class="muted">Dados da sua conta</span></div><div id="v25History" class="v25-table"></div><p class="asset-note">Para adicionar dividendos de ações ou FIIs, utilize os formulários já existentes nas respectivas áreas. Para excluir esses registros, utilize os históricos dessas áreas.</p></div>
 </section>
 <section id="relatorios" class="section"><h1>Relatórios</h1><p class="sub">Resumo das receitas e despesas sincronizadas com sua conta.</p><div class="card" id="report"></div><div class="report-grid"><div class="card"><h2>Distribuição de despesas</h2><div id="expenseRing" class="chart-ring" role="img" aria-label="Gráfico de distribuição de despesas"></div><div id="ringLegend" class="ring-label"></div></div><div class="card"><h2>Gastos por categoria</h2><div id="reportCategories"></div></div></div></section>
@@ -620,18 +629,21 @@ function v253DonutChart(totals,types,colors){
  let running=0;const stops=totals.map((v,i)=>{const start=running;running+=v/total*100;return v>0?colors[i]+' '+start.toFixed(3)+'% '+running.toFixed(3)+'%':''}).filter(Boolean);
  return '<div class="v253-donut" style="background:conic-gradient('+stops.join(',')+')"><div class="v253-donut-core"><span>Total recebido</span><strong>'+money(total)+'</strong></div></div><div class="v253-donut-legend">'+totals.map((v,i)=>'<div><span><i style="background:'+colors[i]+'"></i>'+names[types[i]]+'</span><strong>'+((v/total)*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%</strong><small>'+money(v)+'</small></div>').join('')+'</div>';
 }
-function v253CumulativeChart(monthly){
- const sums=monthly.map(a=>a.reduce((x,y)=>x+y,0));let running=0;const vals=sums.map(v=>(running+=v));
+function v253CumulativeChart(monthly,selectedYear){
+ const now=new Date(),year=Number(selectedYear),lastMonth=year===now.getFullYear()?now.getMonth():year<now.getFullYear()?11:-1;
+ if(lastMonth<0)return '<p class="v25-chart-empty">Este ano ainda não começou. Não há evolução a apresentar.</p>';
+ const sums=monthly.map(a=>a.reduce((x,y)=>x+y,0));let running=0;
+ const vals=sums.slice(0,lastMonth+1).map(v=>(running+=v));
  if(!(running>0))return '<p class="v25-chart-empty">A evolução aparecerá quando houver rendimentos recebidos.</p>';
  const W=940,H=270,L=82,R=24,T=22,B=43,PW=W-L-R,PH=H-T-B,max=running*1.13;
  const x=i=>L+PW*i/11,y=v=>T+PH-PH*v/max;
  const points=vals.map((v,i)=>[x(i),y(v)]),line=points.map((p,i)=>(i?'L':'M')+p[0].toFixed(2)+' '+p[1].toFixed(2)).join(' ');
- const area=line+' L '+x(11)+' '+y(0)+' L '+x(0)+' '+y(0)+' Z';
+ const area=line+' L '+x(lastMonth)+' '+y(0)+' L '+x(0)+' '+y(0)+' Z';
  const months=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
  const grid=[0,.25,.5,.75,1].map(f=>{const yy=y(max*f);return '<line class="gridline" x1="'+L+'" x2="'+(W-R)+'" y1="'+yy+'" y2="'+yy+'"/><text class="axislabel" x="'+(L-9)+'" y="'+(yy+4)+'" text-anchor="end">'+money(max*f)+'</text>'}).join('');
- const labels=months.map((m,i)=>'<text class="axislabel" x="'+x(i)+'" y="'+(H-13)+'" text-anchor="middle">'+m+'</text>').join('');
- const dots=points.map((p,i)=>'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#f3c45c" stroke="#09213d" stroke-width="2"><title>'+months[i]+': '+money(vals[i])+'</title></circle>').join('');
- return '<svg class="v25-premium-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Evolução acumulada real dos rendimentos"><defs><linearGradient id="v253Fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#e5ae35" stop-opacity=".35"/><stop offset="1" stop-color="#e5ae35" stop-opacity="0"/></linearGradient></defs>'+grid+'<path d="'+area+'" fill="url(#v253Fill)"/><path d="'+line+'" fill="none" stroke="#f3bd47" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>'+dots+labels+'</svg>';
+ const labels=months.map((m,i)=>'<text class="axislabel" x="'+x(i)+'" y="'+(H-13)+'" text-anchor="middle" opacity="'+(i<=lastMonth?'1':'.35')+'">'+m+'</text>').join('');
+ const dots=points.map((p,i)=>'<circle data-v254-point="1" cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#f3c45c" stroke="#09213d" stroke-width="2"><title>'+months[i]+' '+year+': '+money(vals[i])+' acumulados; recebido no mês: '+money(sums[i])+'</title></circle>').join('');
+ return '<svg class="v25-premium-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Evolução acumulada dos rendimentos até o mês atual, sem projetar meses futuros"><defs><linearGradient id="v253Fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#e5ae35" stop-opacity=".35"/><stop offset="1" stop-color="#e5ae35" stop-opacity="0"/></linearGradient></defs>'+grid+'<path d="'+area+'" fill="url(#v253Fill)"/><path d="'+line+'" fill="none" stroke="#f3bd47" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>'+dots+labels+'</svg>';
 }
 function renderV25(){
  const titleSel=document.getElementById('v25Title');if(!titleSel)return;
@@ -644,7 +656,7 @@ function renderV25(){
  document.getElementById('v25Chart').innerHTML=v252MonthlyChart(monthly,types,colors);
  const yearRows=rows.filter(x=>String(x.date).startsWith(year));
  document.getElementById('v253Donut').innerHTML=v253DonutChart(types.map(t=>sum(yearRows.filter(x=>x.kind===t))),types,colors);
- document.getElementById('v253Cumulative').innerHTML=v253CumulativeChart(monthly);
+ document.getElementById('v253Cumulative').innerHTML=v253CumulativeChart(monthly,year);
  document.getElementById('v25History').innerHTML=rows.length?'<table><thead><tr><th>Data</th><th>Ativo</th><th>Tipo</th><th>Recebido</th><th>Ação</th></tr></thead><tbody>'+rows.map(x=>'<tr><td>'+assetFmtDate(x.date)+'</td><td>'+escapeHtml(x.asset||'—')+'</td><td>'+escapeHtml(x.type||'—')+'</td><td>'+money(x.value)+'</td><td>'+(x.deletable?'<button type="button" class="danger" data-v25-delete="'+escapeHtml(x.id)+'">Excluir</button>':'<span class="muted">Editar na origem</span>')+'</td></tr>').join('')+'</tbody></table>':'<p class="muted">Nenhum rendimento recebido cadastrado para este filtro.</p>';
  if(couponTableReady)assetMessage('v25Status','Rendimentos sincronizados. Ações e FIIs usam os registros já existentes.');
 }
