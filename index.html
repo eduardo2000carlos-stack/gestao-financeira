@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101a32">
-<title>Carlos Eduardo | Gestão Financeira V25 — Rendimentos</title>
+<title>Carlos Eduardo | Gestão Financeira V25.1 Dark Edition — Rendimentos</title>
 <style>
 :root{--navy:#101a32;--navy2:#172544;--gold:#d8b66a;--bg:#f4f6fa;--ink:#202a3b;--muted:#718096;--white:#fff;--line:#e6eaf0;--green:#17845b;--red:#c34d55}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}
@@ -48,6 +48,77 @@ body{background:#f3f5f9}body>header{position:fixed;left:0;top:0;bottom:0;width:2
 @media(min-width:761px){body>header{overflow:visible;padding-bottom:108px}body>header #sessionBox{position:fixed;bottom:0;left:0;width:256px;margin:0!important;padding:12px 14px 16px;background:#101a32;border-top:1px solid #41506c;z-index:35;box-shadow:0 -8px 18px #101a3233}body>header .auth-user{font-size:11px;margin-bottom:8px;max-height:30px;overflow:hidden}body>header #logoutButton{display:block;width:100%;background:#263858;border:1px solid #d8b66a;color:#fff;font-weight:750;padding:11px}.nav{bottom:105px;padding-bottom:15px}}
 @media(max-width:760px){body>header #sessionBox{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;margin-top:10px}body>header .auth-user{margin:0;flex:1;min-width:0}body>header #logoutButton{flex:none;background:#263858;border-color:#d8b66a;font-weight:700}}
 .v25-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:16px 0}.v25-filters{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.v25-filters label{display:block}.v25-filters select{margin-bottom:0;min-width:140px}.v25-bars{display:flex;align-items:end;gap:8px;min-height:200px;border-bottom:1px solid #dce2eb;padding:20px 4px 0}.v25-month{flex:1;min-width:0;text-align:center}.v25-stack{height:160px;display:flex;align-items:end;justify-content:center;gap:3px}.v25-stack i{display:block;width:19px;max-width:29%;border-radius:4px 4px 0 0;min-height:2px}.v25-month small{font-size:10px;color:#718096}.v25-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:15px;font-size:12px}.v25-legend b{display:inline-block;width:10px;height:10px;margin-right:5px;border-radius:3px}.v25-table{overflow-x:auto}.v25-table table{min-width:550px}.v25-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:15px;margin:16px 0}@media(max-width:950px){.v25-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.v25-grid{grid-template-columns:1fr}}@media(max-width:420px){.v25-kpis .value{font-size:19px}}
+
+/* V25 Dark Edition — visual consistente em todas as seções */
+:root{--navy:#07162b;--navy2:#142a49;--gold:#e6b64c;--bg:#07162b;--ink:#edf3ff;--muted:#a5b5cf;--white:#10243f;--line:#304563;--green:#34d399;--red:#fb7185}
+html{color-scheme:dark}body{background:radial-gradient(circle at 80% 0%,#173354 0%,#08182e 45%,#061326 100%);color:var(--ink)}
+body>header{background:linear-gradient(180deg,#07162b,#102440);border-right-color:#a98432}
+.wrap{background:transparent}.card,.auth-card{background:linear-gradient(155deg,#142b49,#0d203a);border:1px solid #344c6d;box-shadow:0 10px 26px #020b1c44;color:#f0f5ff}
+.card:hover{border-color:#496180}.card h2,.section h1,.auth-card h1{color:#f5f8ff}
+.metric,.muted,.sub,.dash-small,.asset-note,.stock-note,.v24-note,.v21-caption,.v25-month small,.div-month small,.chartcol small,.ring-label,.quote-info,.v24-note,.legend{color:#b1bfd5}
+.value{color:#f5f8ff}.value.positive,.positive{color:#42d6a0}.value.negative,.negative{color:#ff7d91}.gold,.value.gold{color:#f0c35e}
+.v24-top,.dash-hero{background:linear-gradient(115deg,#142f51,#0a1b32);border:1px solid #3a5172;border-bottom:2px solid #e1b453;box-shadow:0 8px 24px #030b1a55}
+.v24-top h1,.dash-hero h2{color:#fff}.v24-top p,.dash-hero p{color:#cbd8eb}.v24-tag{background:linear-gradient(110deg,#b98725,#f4c75b);color:#0a1b31}
+input,select,textarea{background:#0b1b31;color:#edf3ff;border-color:#405775;outline-color:#e6b64c}input::placeholder{color:#8da1bf}label{color:#cad6e9}
+input:focus,select:focus{border-color:#e6b64c;box-shadow:0 0 0 3px #e6b64c20}
+button.action,.primary{background:linear-gradient(120deg,#c18e2f,#e7b94f)!important;color:#07162b!important;border:1px solid #e8c46e!important}button.action:hover,.nav button:hover{filter:brightness(1.08)}
+.nav button{color:#cbd7e9}.nav button.active{color:#091a31!important;font-weight:800}
+.auth-logout,#logoutButton{background:#233858!important;border:1px solid #e6b64c!important;color:#fff!important}
+.asset-tabs button,.v21-tabs button,.dash-actions button,.v24-select,.nav button:not(.active){background:#132945;color:#e8f0fc;border-color:#405775}
+.asset-tabs button.active,.v21-tabs button.selected{background:#e4b54f;color:#07162b;border-color:#e4b54f}
+.asset-ring:after,.stock-donut:after,.chart-ring:after{background:#10243f}
+.notice,.stock-hint,.dash-info,.alert-item,.v24-highlight,.v21-stats>div{background:#132b48;border:1px solid #405775;color:#d9e4f4}
+.v24-highlight.good,.alert-item.ok{background:#103d37;color:#b9f4df;border-color:#25695c}
+.v24-highlight.bad,.alert-item.over{background:#4a2335;color:#ffd4dc;border-color:#814052}
+.alert-item.warn,.notice{background:#2d2b29;border-color:#786036;color:#f5dfb3}
+.stock-tag{background:#294568;color:#f5d48d}
+th{color:#c4d2e5;background:#172e4c}td{color:#e3ebf8}th,td{border-bottom-color:#304563}tr:hover td{background:#ffffff08}
+.bar,.report-bar{background:#304563}.v25-bars,.chartbars,.div-monthly,.dash-month .dash-pair{border-bottom-color:#435b79}
+.v25-stack i{transition:height .35s ease,filter .2s ease;box-shadow:0 0 14px #ffffff0c}.v25-stack i:hover{filter:brightness(1.25)}
+.v25-grid .card,.v25-kpis .card{min-width:0}.v25-grid h2{color:#f3f7ff}
+.v24-chart svg,.v21-chart svg{filter:drop-shadow(0 2px 5px #02081766)}
+footer{margin-left:258px;color:#9cafc8}
+@media(min-width:761px){body>header #sessionBox{background:#0b1d35}.nav{scrollbar-color:#536783 transparent;scrollbar-width:thin}}
+@media(max-width:760px){body>header{background:#091a30}.nav button:not(.active){background:#142b48;color:#e2ebfa;border-color:#3c5372}footer{margin-left:0}.wrap{padding:16px 12px 36px}}
+@media print{html{color-scheme:light}body{background:white;color:#202a3b}}
+
+/* V25.1 — acabamento premium e consistência do tema */
+:root{--bg:#071529;--navy:#08172e;--navy2:#142c4c;--ink:#eef4ff;--muted:#adbed5;--line:#344b69;--gold:#e8b950}
+html,body{min-height:100%;background:#071529!important;color:#edf4ff!important}
+body{background:radial-gradient(ellipse at 78% 0%,#183b61 0%,#0a1d35 42%,#061326 100%) fixed!important}
+body>header{background:linear-gradient(180deg,#07162b,#142b4b)!important}
+.wrap,#appShell,.section,.asset-panel{background:transparent!important;color:#eef4ff}
+.card,.auth-card,.v24-highlight,.v21-stats>div,.stock-hint,.dash-info,.alert-item,.budget-item,.v24-comparison .card{background:linear-gradient(155deg,#162f50 0%,#102641 65%,#0d203a 100%)!important;border:1px solid #365170!important;color:#edf4ff!important;box-shadow:0 12px 30px rgba(0,5,17,.28)!important}
+.card h2,.card h3,.section h1,.section h2,.section h3,.auth-card h1{color:#f5f8ff!important}
+.metric,.muted,.sub,.stock-note,.asset-note,.v24-note,.v21-caption,.quote-info,.dash-small,.legend,.v25-month small{color:#afc1d8!important}
+.card .value{color:#f6f9ff}.card .value.gold{color:#f1c66d}.card .value.positive{color:#3bdaa1}.card .value.negative{color:#ff8094}
+.v24-top,.dash-hero,.v25-top{background:linear-gradient(115deg,#152f52,#091b34)!important;color:#fff!important;border:1px solid #385678!important;border-bottom:2px solid #e8b950!important}
+.v24-top h1,.dash-hero h2{color:white!important}
+input,select,textarea{background:#0b1f39!important;border:1px solid #46617e!important;color:#f0f6ff!important;color-scheme:dark}
+input::placeholder,textarea::placeholder{color:#93a8c4!important}label{color:#d0deef!important}
+button:not(.action):not(.danger):not(.auth-logout):not(.active):not(.selected),.asset-tabs button:not(.active),.v21-tabs button:not(.selected){background:#183554;color:#edf4ff;border-color:#46617e}
+.nav button:not(.active){background:transparent!important;color:#d9e4f5!important}.nav button.active{background:linear-gradient(90deg,#b88922,#e6bd61)!important;color:#0c203b!important}
+.action,.primary{background:linear-gradient(110deg,#c99330,#edc45c)!important;color:#091b32!important;border:1px solid #efcb73!important}
+.auth-logout,#logoutButton{background:#203d61!important;color:#fff!important;border:1px solid #e8b950!important}
+.asset-ring:after,.stock-donut:after,.chart-ring:after{background:#122945!important}
+.stock-tag{background:#294968!important;color:#f2d590!important}
+.notice{background:#332c22!important;color:#f9e4ba!important;border:1px solid #816b40!important}
+.notice[role=status]{border-radius:11px}
+.v25-bars,.chartbars,.div-monthly,.dash-month .dash-pair{border-bottom:1px solid #46617e!important}
+.v25-stack i,.chartcol .bars i,.div-bar,.dash-month i{box-shadow:0 0 14px rgba(229,185,81,.18);transition:filter .2s,transform .2s}
+.v25-stack i:hover,.chartcol .bars i:hover,.div-bar:hover,.dash-month i:hover{filter:brightness(1.2);transform:translateY(-2px)}
+.v25-stack i{border-radius:6px 6px 1px 1px!important}
+.v25-month small,.div-month small,.dash-month small{color:#b8c8dd!important}
+th{background:#193755!important;color:#cbd9ea!important}td{color:#edf4ff!important}td,th{border-bottom:1px solid #37516e!important}
+tr:hover td{background:#ffffff0a!important}
+.v24-chart svg,.v21-chart svg{filter:drop-shadow(0 3px 6px #0005)}
+.v25-legend,.v24-legend,.asset-legend,.stock-legend{color:#dce7f6!important}
+.bar,.report-bar{background:#2e4967!important}
+.v24-highlight.good,.alert-item.ok{background:#123e37!important;color:#c3f4df!important}
+.v24-highlight.bad,.alert-item.over{background:#4c2938!important;color:#ffcfda!important}
+footer{color:#aebfd6!important}
+@media(max-width:760px){body>header{background:#091c35!important}.nav button:not(.active){background:#152e4c!important;border:1px solid #3e5a79!important}.wrap{padding:16px 12px 36px!important}}
+@media print{html,body{background:#fff!important;color:#202a3b!important}}
 </style>
 </head>
 <body>
@@ -138,7 +209,7 @@ body{background:#f3f5f9}body>header{position:fixed;left:0;top:0;bottom:0;width:2
 <section id="tesouro" class="section"><div class="v24-top"><div><h1>Tesouro Direto <span class="v24-tag">V24</span></h1><p>Registre seus títulos e acompanhe valores aplicados e preços informados.</p></div></div><div class="notice" id="tesouroStatus" role="status">Aguardando login...</div><div class="card"><h2>Adicionar ou editar título</h2><form id="tesouroForm" class="asset-form"><div><label for="tdType">Tipo de título</label><select id="tdType"><option>Tesouro Selic</option><option>Tesouro IPCA+</option><option>Tesouro Prefixado</option><option>Tesouro IPCA+ com Juros Semestrais</option><option>Tesouro Prefixado com Juros Semestrais</option></select></div><div><label for="tdName">Identificação do título</label><input id="tdName" required maxlength="100" placeholder="Ex.: Tesouro IPCA+ 2037"></div><div><label for="tdMaturity">Vencimento</label><input id="tdMaturity" type="date" required></div><div><label for="tdRate">Taxa contratada (texto)</label><input id="tdRate" maxlength="70" placeholder="Ex.: IPCA + 7,74% a.a."></div><div><label for="tdCost">Valor total aplicado (R$)</label><input id="tdCost" type="number" min="0.01" step="0.01" required></div><div><label for="tdValue">Valor atual informado (R$)</label><input id="tdValue" type="number" min="0" step="0.01" placeholder="Opcional"></div><div class="wide"><button class="action" type="submit" id="tdSave">Salvar título</button> <button class="danger hidden" type="button" id="tdCancel">Cancelar edição</button></div></form><p class="asset-note">Valor atual é informado manualmente, preferencialmente com base no extrato da corretora ou do Tesouro Direto. A taxa contratada não é usada para estimar automaticamente o preço de mercado.</p></div><div class="card" style="margin-top:16px"><h2>Meus títulos</h2><div class="asset-table" id="tdTable"></div></div></section>
 
 <section id="rendimentos" class="section">
- <div class="v24-top"><div><h1>Rendimentos e proventos <span class="v24-tag">V25</span></h1><p>Dividendos de ações, rendimentos de FIIs e juros semestrais do Tesouro, sem duplicar lançamentos.</p></div></div>
+ <div class="v24-top"><div><h1>Rendimentos e proventos <span class="v24-tag">V25.1</span></h1><p>Dividendos de ações, rendimentos de FIIs e juros semestrais do Tesouro, sem duplicar lançamentos.</p></div></div>
  <div class="notice" id="v25Status" role="status" aria-live="polite">Aguardando sincronização...</div>
  <div class="v25-filters"><div><label for="v25Year">Ano do gráfico</label><select id="v25Year"></select></div><div><label for="v25Filter">Tipo de rendimento</label><select id="v25Filter"><option value="todos">Todos</option><option value="acoes">Ações</option><option value="fiis">FIIs</option><option value="tesouro">Tesouro Direto</option></select></div></div>
  <div class="v25-kpis"><div class="card"><div class="metric">Total recebido (acumulado)</div><div class="value positive" id="v25Total">—</div></div><div class="card"><div class="metric">Recebido no ano</div><div class="value" id="v25YearTotal">—</div></div><div class="card"><div class="metric">Recebido neste mês</div><div class="value" id="v25MonthTotal">—</div></div><div class="card"><div class="metric">Registros de recebimento</div><div class="value" id="v25Count">—</div></div></div>
@@ -150,7 +221,7 @@ body{background:#f3f5f9}body>header{position:fixed;left:0;top:0;bottom:0;width:2
 <section id="educacao" class="section"><h1>Educação financeira</h1><p class="sub">Conceitos essenciais para tomar decisões mais conscientes.</p><div class="card"><div class="lesson"><strong>1. Organize seu orçamento</strong><p class="muted">Anote receitas e despesas para entender para onde seu dinheiro está indo.</p></div><div class="lesson"><strong>2. Construa uma reserva</strong><p class="muted">Uma reserva pode ajudar a lidar com imprevistos. Defina um objetivo compatível com sua realidade.</p></div><div class="lesson"><strong>3. Conheça antes de investir</strong><p class="muted">Entenda riscos, custos, liquidez e prazo. Não existe rentabilidade garantida em investimentos de risco.</p></div><div class="lesson"><strong>4. Simule juros compostos</strong><p class="muted">O resultado depende da taxa, do prazo e dos aportes. Simulações não são promessa de retorno.</p><label>Valor inicial (R$)</label><input id="principal" type="number" value="1000" min="0"><label>Taxa mensal (%)</label><input id="rate" type="number" value="0.8" step="0.1"><label>Prazo (meses)</label><input id="months" type="number" value="12" min="1"><button class="action" onclick="simulate()">Simular</button><p id="simulation" class="gold"></p></div></div></section>
 <section id="config" class="section"><h1>Configurações</h1><p class="sub">Preferências e dados deste protótipo. Os limites do planejamento também são sincronizados com sua conta.</p><div class="card"><p>Receitas, despesas, metas, orçamentos e posições de ações são sincronizados com sua conta no Supabase. Os orçamentos antigos armazenados no navegador não são migrados automaticamente.</p><button class="danger" onclick="resetDemo()">Recarregar orçamentos da conta</button><div class="notice">Esta é uma versão demonstrativa. Não informe senhas, dados bancários ou informações financeiras sensíveis. O login é feito pelo Supabase; os registros financeiros e a carteira de ações são sincronizados entre dispositivos.</div></div></section>
 <div class="notice">Receitas, despesas, metas, orçamentos e ações vêm do Supabase. Esta ferramenta é educativa e organizacional; não constitui recomendação individual de investimento.</div>
-</main><article id="printPortfolio" class="print-report" aria-label="Relatório de carteira para PDF"></article><footer>© 2026 Carlos Eduardo – Gestão Financeira · Versão 25.0 · Carteira de ações sincronizada (beta)</footer>
+</main><article id="printPortfolio" class="print-report" aria-label="Relatório de carteira para PDF"></article><footer>© 2026 Carlos Eduardo – Gestão Financeira · Versão 25.1 · Carteira de ações sincronizada (beta)</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 // Preencha apenas a URL do projeto e a chave PUBLICÁVEL (sb_publishable_...).
@@ -507,7 +578,7 @@ function renderV25(){
  const year=yearSel.value,filter=document.getElementById('v25Filter').value,rows=records.filter(x=>filter==='todos'||x.kind===filter),sum=xs=>xs.reduce((a,x)=>a+x.value,0),today=now.toISOString().slice(0,7);
  document.getElementById('v25Total').textContent=money(sum(rows));document.getElementById('v25YearTotal').textContent=money(sum(rows.filter(x=>String(x.date).startsWith(year))));document.getElementById('v25MonthTotal').textContent=money(sum(rows.filter(x=>String(x.date).slice(0,7)===today)));document.getElementById('v25Count').textContent=String(rows.length);
  const types=['acoes','fiis','tesouro'],colors=['#2563eb','#9b59b6','#d49a13'];const monthly=Array.from({length:12},(_,i)=>types.map(t=>sum(rows.filter(x=>x.kind===t&&String(x.date).slice(0,7)===year+'-'+String(i+1).padStart(2,'0')))));const max=Math.max(1,...monthly.flat());
- document.getElementById('v25Chart').innerHTML=monthly.map((values,i)=>'<div class="v25-month"><div class="v25-stack">'+values.map((v,j)=>'<i title="'+types[j]+': '+money(v)+'" style="height:'+Math.max(2,v/max*155)+'px;background:'+colors[j]+'"></i>').join('')+'</div><small>'+['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'][i]+'</small></div>').join('');
+ document.getElementById('v25Chart').innerHTML=monthly.map((values,i)=>'<div class="v25-month"><div class="v25-stack">'+values.map((v,j)=>'<i title="'+types[j]+': '+money(v)+'" style="height:'+(v>0?Math.max(3,v/max*155):0)+'px;background:'+colors[j]+'"></i>').join('')+'</div><small>'+['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'][i]+'</small></div>').join('');
  document.getElementById('v25History').innerHTML=rows.length?'<table><thead><tr><th>Data</th><th>Ativo</th><th>Tipo</th><th>Recebido</th><th>Ação</th></tr></thead><tbody>'+rows.map(x=>'<tr><td>'+assetFmtDate(x.date)+'</td><td>'+escapeHtml(x.asset||'—')+'</td><td>'+escapeHtml(x.type||'—')+'</td><td>'+money(x.value)+'</td><td>'+(x.deletable?'<button type="button" class="danger" data-v25-delete="'+escapeHtml(x.id)+'">Excluir</button>':'<span class="muted">Editar na origem</span>')+'</td></tr>').join('')+'</tbody></table>':'<p class="muted">Nenhum rendimento recebido cadastrado para este filtro.</p>';
  if(couponTableReady)assetMessage('v25Status','Rendimentos sincronizados. Ações e FIIs usam os registros já existentes.');
 }
